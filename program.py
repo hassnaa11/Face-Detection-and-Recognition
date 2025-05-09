@@ -4,30 +4,20 @@ from PyQt5.QtGui import *
 import numpy as np
 import cv2
 
-
 from Image import Image
-
-kernel_sizes = [3, 5, 7]
-RGB_Channels = ("red", "green", "blue")
-Color =('r', 'g', 'b')
-filters = ['Average','Gaussian','Median','select filter']
-edge_detection_filters = ['Sobel', 'Roberts', 'Prewitt', 'Canny']
-
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         uic.loadUi('gui.ui', self)
     
-        # upload button
+        # buttons connection
         self.upload_button.clicked.connect(self.upload_image)
         self.face_detection_button.clicked.connect(self.detect_faces)
         
         
     def upload_image(self):
-        self.file_path, _ = QtWidgets.QFileDialog.getOpenFileName(
-            self, "Select Image", "", "Images (*.png *.jpg *.jpeg *.bmp *.gif)"
-        )
+        self.file_path, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Select Image", "", "Images (*.png *.jpg *.jpeg *.bmp *.gif)")
         
         if self.file_path:
             self.image = Image()
