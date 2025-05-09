@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FaceDetectionandRecognition</class>
+ <widget class="QMainWindow" name="FaceDetectionandRecognition">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1353</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgba(2,66,86,255);
+background-color:#012a3b;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="3" column="1">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>385</width>
+        <height>38</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="1" colspan="3">
+     <widget class="QLabel" name="label_40">
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <italic>true</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: italic 16pt &quot;Georgia&quot;;
+
+
+color: rgb(255, 255, 255);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Face Detection And Recognition Program</string>
+      </property>
+      <property name="margin">
+       <number>15</number>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>355</width>
+        <height>48</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="1" colspan="3">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="2">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>30</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="5" column="1" colspan="3">
+     <widget class="QWidget" name="widget_3" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>200</horstretch>
+        <verstretch>200</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font:  italic bold 12pt &quot;Georgia&quot;;
+/*background-color: rgb(57, 143, 252);
+background-color: rgb(219,222,230);
+background: rgba(255,255,255,0.5);*/
+
+color: rgb(255, 255, 255);
+color: rgb(2, 39, 35);
+/*buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 15px;
+box-shadow : 0px 4px 20px rgba(0, 0, 0, 0.6);
+border : 2px solid rgb(255, 255, 255); */
+
+</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_23">
+       <item>
+        <spacer name="horizontalSpacer_19">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="upload_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>180</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:rgb(108,156,164);
+
+background-color: rgb(120, 207, 233);
+
+color: rgb(255, 255, 255);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 10px;</string>
+         </property>
+         <property name="text">
+          <string>Upload</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>15</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="face_detection_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>190</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:rgb(108,156,164);
+background-color: rgb(120, 207, 233);
+
+color: rgb(255, 255, 255);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 10px;</string>
+         </property>
+         <property name="text">
+          <string>Detect Faces</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>15</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="face_recognitio_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:rgb(108,156,164);
+background-color: rgb(120, 207, 233);
+
+color: rgb(255, 255, 255);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 10px;</string>
+         </property>
+         <property name="text">
+          <string>Recognise Face</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>15</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="confusion_matrix_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:rgb(108,156,164);
+background-color: rgb(120, 207, 233);
+
+color: rgb(255, 255, 255);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 10px;</string>
+         </property>
+         <property name="text">
+          <string>Confusion Matrix</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>15</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="roc_curv_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>190</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(120, 207, 233);
+
+color: rgb(255, 255, 255);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 10px;</string>
+         </property>
+         <property name="text">
+          <string>ROC Curve</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>15</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="reset_button">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>190</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Georgia</family>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <italic>true</italic>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>OpenHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(120, 207, 233);
+
+color: rgb(255, 255, 255);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 12px;</string>
+         </property>
+         <property name="text">
+          <string>Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_21">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QWidget" name="widget_2" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>200</horstretch>
+        <verstretch>200</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>600</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:rgb(108,156,164);
+background-color: rgb(120, 207, 233);
+
+color: rgb(255, 255, 255);
+border-radius: 15px;
+box-shadow : 0px 4px 20px rgba(0, 0, 0, 0.6);
+border : 2px solid rgb(255, 255, 255); 
+display: block;
+margin-bottom: 300pt;</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>8</number>
+       </property>
+       <property name="topMargin">
+        <number>8</number>
+       </property>
+       <property name="rightMargin">
+        <number>8</number>
+       </property>
+       <property name="bottomMargin">
+        <number>8</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QGraphicsView" name="output_graphicsView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: italic 10pt &quot;Georgia&quot;;
+background-color:rgba(2,66,86,255);
+background-color:#012a3b;
+
+color: rgb(255, 255, 255);
+color: rgb(2, 39, 35);
+buttoon-shadow: 2px 2px 5px rgb(0, 0, 0);
+border-radius: 15px;
+box-shadow : 0px 4px 20px rgba(0, 0, 0, 0.6);
+border : 2px solid rgb(255, 255, 255); </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <spacer name="horizontalSpacer_8">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1" colspan="3">
+     <spacer name="verticalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="4">
+     <spacer name="horizontalSpacer_9">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1353</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
