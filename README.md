@@ -29,8 +29,8 @@ This project implements a basic face recognition system using Principal Componen
 - OpenCV (`cv2`)  
 - NumPy  
 
-## 🏁 How to Run
+## How to Run
 1. Add training images to the `data/` folder.
 2. Run the main script:
    ```bash
-   python main.py
+   python program.py
