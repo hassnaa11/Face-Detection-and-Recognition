@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1447</width>
+    <width>1470</width>
     <height>760</height>
    </rect>
   </property>
@@ -548,7 +548,7 @@ border-radius: 10px;</string>
       </property>
       <property name="minimumSize">
        <size>
-        <width>600</width>
+        <width>800</width>
         <height>0</height>
        </size>
       </property>
@@ -626,7 +626,7 @@ border-radius: 10px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1447</width>
+     <width>1470</width>
      <height>26</height>
     </rect>
    </property>

@@ -2,7 +2,10 @@ import numpy as np
 import os
 import cv2
 
-def load_faces(folder="data/", image_size=(30,30)):
+image_size = (50,50)
+num_components = 20
+
+def load_faces(folder):
     X = []
     y = []
     for file_name in os.listdir(folder):
@@ -13,8 +16,10 @@ def load_faces(folder="data/", image_size=(30,30)):
             continue
         
         image = cv2.resize(image, image_size)
+        person_id = file_name.split('_')[0]
+        
         X.append(image.flatten())
-        y.append(file_name)
+        y.append(person_id)
     
     return X, y    
 
@@ -25,7 +30,7 @@ def train_faces(X_train):
     return sorted_eigenvectors, sorted_eigenvalue, X_transformed, mean   
         
 
-def pca(X, num_components=3):
+def pca(X):
     # Center the data
     mean = np.mean(X, axis=0)
     X_centered = X - mean
@@ -50,7 +55,7 @@ def pca(X, num_components=3):
     return sorted_eigenvectors, sorted_eigenvalue, X_transformed,mean
 
 
-def transform_test_image(test_image, mean, eigenvectors, image_size=(30, 30), num_components=3):
+def transform_test_image(test_image, mean, eigenvectors):
     test_image_resized = cv2.resize(test_image, image_size) # resize image
     test_image_flattened = test_image_resized.flatten() # flatten image
 
