@@ -101,7 +101,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         if key == 1:
             print(f"Closest index: {closest_idx}, Label: {self.labels[closest_idx]}, Distance: {distances[0][closest_idx]}")
-            self.recognized_face_label.setText(f"{os.path.splitext(self.labels[closest_idx])[0]}")
+            self.recognized_face_label.setText(f"Subject: {os.path.splitext(self.labels[closest_idx])[0]}")
         else:
             return self.labels[closest_idx]    
 
