@@ -8,16 +8,22 @@ This project implements a basic face recognition system using Principal Componen
 - Faces Detection
 - Face recognition via Euclidean distance comparison in PCA space
 
-## Faces Detection
-![image](https://github.com/user-attachments/assets/f0500eb2-17a7-4486-8131-374b01dcb4c3)
-
-## Face Recognition
-![image](https://github.com/user-attachments/assets/9e9bf203-83e4-490f-8328-4db6085e6486)
-
 ## Techniques Used
 - Principal Component Analysis (PCA)
 - Euclidean distance matching
 - Image preprocessing with OpenCV
+
+## Faces Detection
+![Screenshot 2025-05-10 234858](https://github.com/user-attachments/assets/6fd42252-7212-4835-90f2-9a063f47734d)
+
+## Face Recognition
+![Screenshot 2025-05-10 234837](https://github.com/user-attachments/assets/735410b5-9691-4bb0-a506-2b779019c1e7)
+
+## Confusion Matrix:
+![Screenshot 2025-05-10 234911](https://github.com/user-attachments/assets/bab9f560-0608-4fa7-81ed-77553a066247)
+
+## ROC Curve: 
+![Screenshot 2025-05-10 234924](https://github.com/user-attachments/assets/4127d65e-f8cc-4405-b90e-fc94716f47f1)
 
 ## Project Structure
 - `feature_extraction.py`: Handles PCA training and test image transformation
