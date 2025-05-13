@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import roc_curve, auc
 from itertools import cycle
+from sklearn.metrics import confusion_matrix, roc_curve, auc, roc_auc_score
 
 from Image import Image
 import feature_extraction
@@ -57,11 +58,11 @@ class MainWindow(QtWidgets.QMainWindow):
         
 
     def detect_faces(self):
-        # Convert to grayscale (do NOT overwrite the original image)
+        # Convert to grayscale 
         if len(self.image.image.shape) == 3 and self.image.image.shape[2] == 3:
             gray = cv2.cvtColor(self.image.image, cv2.COLOR_RGB2GRAY)
         else:
-            gray = self.image.image  # Already grayscale
+            gray = self.image.image 
 
         # Load Haar cascade
         face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -69,12 +70,12 @@ class MainWindow(QtWidgets.QMainWindow):
         # Detect faces
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
 
-        # Draw rectangles on a copy to avoid modifying original
+        # Draw rectangles on a copy 
         output_img = self.image.image.copy()
         for (x, y, w, h) in faces:
             cv2.rectangle(output_img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
-        # Update the displayed image (temporarily replacing self.image.image for display)
+        # Update the displayed image 
         self.image.image = output_img
         scene = self.image.display_image()
         self.output_graphicsView.setScene(scene)
@@ -82,11 +83,11 @@ class MainWindow(QtWidgets.QMainWindow):
             
         
     def recognize_face(self, image, key=0):
-        # Convert to grayscale (do NOT overwrite the original image)
+        # Convert to grayscale
         if len(image.shape) == 3 and image.shape[2] == 3:
             gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
         else:
-            gray = image  # Already grayscale
+            gray = image 
         
         # Extract the PCA features from the test image
         test_transformed = feature_extraction.transform_test_image(gray, self.mean, self.eigenvectors)
@@ -125,7 +126,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         # Generate confusion matrix
         cm = confusion_matrix(self.y_test, y_pred, labels=all_labels)
-        
+
         # Create plot
         fig, ax = plt.subplots(figsize=(10, 8))
         im = ax.imshow(cm, cmap='Blues')
@@ -151,76 +152,75 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     def draw_roc_curve(self):
-        # Get unique sorted classes
-        classes = sorted(list(set(self.y_test)))
-        n_classes = len(classes)
-        
-        # Binarize the test labels (one-vs-rest)
-        y_test_bin = label_binarize(self.y_test, classes=classes)
-        
-        # Initialize array for decision scores
-        decision_scores = np.zeros((len(self.X_test), n_classes))
-        
-        # For each test image, get similarity scores for all classes
-        for i, image in enumerate(self.X_test):
-            # Convert to grayscale if needed
-            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
+            # Get unique sorted classes
+            classes = sorted(list(set(self.y_test)))
+            n_classes = len(classes)
             
-            # Extract features
-            test_transformed = feature_extraction.transform_test_image(gray, self.mean, self.eigenvectors)
+            # Binarize the test labels (one-vs-rest)
+            y_test_bin = label_binarize(self.y_test, classes=classes)
             
-            # Calculate distances to all training samples
-            distances = euclidean_distances(test_transformed.reshape(1, -1), self.X_transformed)
+            # Initialize array for decision scores
+            decision_scores = np.zeros((len(self.X_test), n_classes))
             
-            # Convert distances to similarities for each class
-            for j, class_label in enumerate(classes):
-                # Get indices of training samples for this class
-                class_indices = [idx for idx, label in enumerate(self.labels) if label == class_label]
+            # For each test image, get similarity scores for all classes
+            for i, image in enumerate(self.X_test):
+                # Convert to grayscale if needed
+                gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
                 
-                if class_indices:
-                    # Use minimum distance as the score (better match = higher score)
-                    decision_scores[i, j] = 1 / (1 + np.min(distances[0, class_indices]))
-                else:
-                    decision_scores[i, j] = 0  # No training samples for this class
-        
-        # Compute ROC curve and ROC area for each class
-        fpr = dict()
-        tpr = dict()
-        roc_auc = dict()
-        
-        for i in range(n_classes):
-            fpr[i], tpr[i], _ = roc_curve(y_test_bin[:, i], decision_scores[:, i])
-            roc_auc[i] = auc(fpr[i], tpr[i])
-        
-        # Compute micro-average ROC curve and area
-        fpr["micro"], tpr["micro"], _ = roc_curve(y_test_bin.ravel(), decision_scores.ravel())
-        roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
-        
-        # Plot ROC curves
-        plt.figure(figsize=(10, 8))
-        
-        # Plot each class
-        colors = cycle(['aqua', 'darkorange', 'cornflowerblue', 'green', 'red',
-                    'purple', 'pink', 'brown', 'gray', 'olive'])
-        for i, color in zip(range(n_classes), colors):
-            plt.plot(fpr[i], tpr[i], color=color, lw=2,
-                    label=f'Class {classes[i]} (AUC = {roc_auc[i]:0.2f})')
-        
-        # Plot micro-average
-        plt.plot(fpr["micro"], tpr["micro"],
-                label=f'Micro-average (AUC = {roc_auc["micro"]:0.2f})',
-                color='deeppink', linestyle=':', linewidth=4)
-        
-        plt.plot([0, 1], [0, 1], 'k--', lw=2)
-        plt.xlim([0.0, 1.0])
-        plt.ylim([0.0, 1.05])
-        plt.xlabel('False Positive Rate')
-        plt.ylabel('True Positive Rate')
-        plt.title('ROC Curve for Face Recognition')
-        plt.legend(loc="lower right")
-        plt.grid(True)
-        plt.show()
-
+                # Extract features
+                test_transformed = feature_extraction.transform_test_image(gray, self.mean, self.eigenvectors)
+                
+                # Calculate distances to all training samples
+                distances = euclidean_distances(test_transformed.reshape(1, -1), self.X_transformed)
+                
+                # Convert distances to similarities for each class
+                for j, class_label in enumerate(classes):
+                    # Get indices of training samples for this class
+                    class_indices = [idx for idx, label in enumerate(self.labels) if label == class_label]
+                    
+                    if class_indices:
+                        # Use minimum distance as the score (better match = higher score)
+                        decision_scores[i, j] = 1 / (1 + np.min(distances[0, class_indices]))
+                    else:
+                        decision_scores[i, j] = 0  # No training samples for this class
+            
+            # Compute ROC curve and ROC area for each class
+            fpr = dict()
+            tpr = dict()
+            roc_auc = dict()
+            
+            for i in range(n_classes):
+                fpr[i], tpr[i], _ = roc_curve(y_test_bin[:, i], decision_scores[:, i])
+                roc_auc[i] = auc(fpr[i], tpr[i])
+            
+            # Compute micro-average ROC curve and area
+            fpr["micro"], tpr["micro"], _ = roc_curve(y_test_bin.ravel(), decision_scores.ravel())
+            roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
+            
+            # Plot ROC curves
+            plt.figure(figsize=(10, 8))
+            
+            # Plot each class
+            colors = cycle(['aqua', 'darkorange', 'cornflowerblue', 'green', 'red',
+                        'purple', 'pink', 'brown', 'gray', 'olive'])
+            for i, color in zip(range(n_classes), colors):
+                plt.plot(fpr[i], tpr[i], color=color, lw=2,
+                        label=f'Class {classes[i]} (AUC = {roc_auc[i]:0.2f})')
+            
+            # Plot micro-average
+            plt.plot(fpr["micro"], tpr["micro"],
+                    label=f'Micro-average (AUC = {roc_auc["micro"]:0.2f})',
+                    color='deeppink', linestyle=':', linewidth=4)
+            
+            plt.plot([0, 1], [0, 1], 'k--', lw=2)
+            plt.xlim([0.0, 1.0])
+            plt.ylim([0.0, 1.05])
+            plt.xlabel('False Positive Rate')
+            plt.ylabel('True Positive Rate')
+            plt.title('ROC Curve for Face Recognition')
+            plt.legend(loc="lower right")
+            plt.grid(True)
+            plt.show()
                       
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

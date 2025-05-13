@@ -70,13 +70,9 @@ class Image:
         scene.addPixmap(pixmap)
         return scene
           
-
             
     def get_image(self):
         return np.copy(self.image)
-    
-    def get_cdf_canvas(self):
-        return self.__cdf_canvas
     
     def rgb2gray(self):
         if self.is_RGB():
